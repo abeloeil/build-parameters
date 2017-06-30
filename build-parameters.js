@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const fs = require('fs');
 const colors = require('colors');
 const path = require('path');
@@ -43,7 +42,6 @@ function askQuestion(question, defaultAnswer) {
  * @param parameters
  */
 function writeJson(parameters, parametersPath) {
-  console.log(JSON.stringify(parameters, null, 4));
   fs.writeFile(parametersPath, JSON.stringify(parameters, null, 4), 'utf8', (err) => {
     if (err) {
       console.error(err.message.error);
@@ -63,15 +61,15 @@ if (!distPath || !parametersPath) {
 }
 
 //Check if dist file exist
-if (!fs.existsSync(path.resolve(__dirname, distPath))) {
-  console.log(path.resolve(__dirname, distPath));
+if (!fs.existsSync(path.resolve(distPath))) {
+  console.log(path.resolve(distPath));
   console.log('Unable to find dist file.'.red);
   process.exit(-1);
 }
 
 const dist = JSON.parse(
   fs.readFileSync(
-    path.resolve(__dirname, distPath),
+    path.resolve(distPath),
     'utf8'
   )
 );
@@ -79,8 +77,8 @@ const dist = JSON.parse(
 let parameters = {};
 
 //Check if parameters file already exist, and get values
-if (fs.existsSync(path.resolve(__dirname, parametersPath))) {
-  parameters = require(path.resolve(__dirname, parametersPath));
+if (fs.existsSync(path.resolve(parametersPath))) {
+  parameters = require(path.resolve(parametersPath));
 }
 
 
@@ -113,6 +111,6 @@ input.on('line', (answer) => {
   if (counter < diff.length) {
     askQuestion(diff[counter], dist[diff[counter]]);
   } else {
-    writeJson(parameters, path.resolve(__dirname, parametersPath));
+    writeJson(parameters, path.resolve(parametersPath));
   }
 });
