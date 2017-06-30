@@ -1,12 +1,16 @@
 {
   "name": "build-parameters",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Interactive command to transform dist file of parameters to usable json",
-  "main": "index.js",
+  "main": "build-parameters.js",
   "repository": "https://github.com/ABeloeil/build-parameters",
   "author": "abeloeil <arnaud.beloeil@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2"
-  }
+  },
+  "engines": {
+    "node": ">=6.0"
+  },
+  "bin": "./build-parameters.js"
 }
